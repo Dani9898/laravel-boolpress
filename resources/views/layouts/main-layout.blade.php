@@ -14,7 +14,7 @@
     
     <div id="app">
 
-        {{-- @include('components.header')
+        @include('components.header')
     
         @if ($errors->any()) 
             <div class="alert alert-danger"> 
@@ -24,11 +24,11 @@
                     @endforeach 
                 </ul> 
             </div> 
-        @endif  --}}
+        @endif 
     
         @yield('content')
 
-        {{-- @include('components.footer') --}}
+        @include('components.footer')
 
     </div>
     
