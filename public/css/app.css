@@ -10966,3 +10966,15 @@ body {
   text-align: center;
 }
 
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 10px 0;
+}
+
+h1 {
+  margin: 40px 0;
+}
+

@@ -4,14 +4,18 @@
     
 @auth
     
-    <h1>{{ Auth::user() -> name }}</h1>
-            
+    <h1>Welcome {{ Auth::user() -> name }} :)</h1>
+
     <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
+
+    <a class="btn btn-primary" href="{{ route('post.create') }}">CREATE</a>
 
 @endauth
 
 @guest
-        
+
+<h1>POSTS</h1>
+
 <h2>Register</h2>
 <form action="{{ route('register') }}" method="POST">
 
@@ -47,5 +51,19 @@
 
 </form>
 @endguest
+
+<ul>
+     
+    @foreach ($posts as $post)
+
+    <li>
+        {{ $post -> titolo }} <br>
+        {{ $post -> autore }} <br>
+        {{ $post -> sottotitolo }}
+    </li>
+        
+    @endforeach 
+ 
+</ul>
 
 @endsection
