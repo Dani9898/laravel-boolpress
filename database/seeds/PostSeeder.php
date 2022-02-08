@@ -17,7 +17,13 @@ class PostSeeder extends Seeder
             $category = Category::inRandomOrder() ->limit(1) ->first();
             $post -> category() ->associate($category);
             $post ->save();
-        });
+        });                                                           
     
+        for ($i = 1; $i < 10; $i++) {
+            DB::table('post_tag')->insert([
+                ['post_id' => rand(1, 10), 'tag_id' => rand(1, 20)]
+            ]);
+        }
+
     }
 }

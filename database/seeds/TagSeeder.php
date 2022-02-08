@@ -13,13 +13,15 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tag::class, 20) -> create() ->each(function($tag) {
+        factory(Tag::class, 20) -> create() ;
 
-            $posts = post::inRandomOrder() -> limit(rand(0,5)) -> get();
+        // ->each(function($tag) {
 
-            $tag -> posts() -> attach($posts);
+        //     $posts = post::inRandomOrder() -> limit(rand(0,5)) -> get();
 
-            $tag  -> save();
-        });
+        //     $tag  posts() -> attach($posts);
+
+        //     $tag  -> save();
+        // })
     }
 }

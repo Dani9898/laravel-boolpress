@@ -63,7 +63,9 @@
         {{ $post -> contenuto }} <br>
         {{ $post -> data }} <br>
         {{ $post -> category -> name}} <br>
-
+        @foreach ($post -> tags as $tag)
+            {{$tag -> name}}
+        @endforeach <br>
     </li>
         
     @endforeach 

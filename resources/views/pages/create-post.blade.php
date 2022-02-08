@@ -27,6 +27,12 @@
             @endforeach
         </select>
 
+        <h4>Tags</h4>
+        <label for="tags">tags</label>
+        @foreach ($tags as $tag)
+            <input type="checkbox" name="tags[]" value="{{ $tag -> id }}"> {{ $tag -> name }}
+        @endforeach
+
         <input type="submit" value="CREATE">
 
     </form>

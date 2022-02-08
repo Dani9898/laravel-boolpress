@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Category;
+use App\Tag;
 
 
 class HomeController extends Controller
@@ -33,8 +34,9 @@ class HomeController extends Controller
     public function createPost() {
 
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('pages.create-post', compact('categories'));
+        return view('pages.create-post', compact('categories', 'tags'));
     }
 
     public function storePost(Request $request) {
@@ -50,10 +52,13 @@ class HomeController extends Controller
         
 
         $post = Post::make($data);
+
         $category = Category::findOrFail($request -> get('category'));
-
         $post -> category() -> associate($category);
+        $post -> save();
 
+        $tags = Tag::findOrFail($request -> get('tags'));
+        $post -> tags() -> attach($tags);
         $post -> save();
 
 
