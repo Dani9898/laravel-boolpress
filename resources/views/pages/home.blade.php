@@ -59,7 +59,11 @@
     <li>
         {{ $post -> titolo }} <br>
         {{ $post -> autore }} <br>
-        {{ $post -> sottotitolo }}
+        {{ $post -> sottotitolo }} <br>
+        {{ $post -> contenuto }} <br>
+        {{ $post -> data }} <br>
+        {{ $post -> category -> name}} <br>
+
     </li>
         
     @endforeach 

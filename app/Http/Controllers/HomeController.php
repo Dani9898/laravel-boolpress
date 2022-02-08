@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\Category;
 
 
 class HomeController extends Controller
@@ -30,7 +31,10 @@ class HomeController extends Controller
     // }
 
     public function createPost() {
-        return view('pages.create-post');
+
+        $categories = Category::all();
+
+        return view('pages.create-post', compact('categories'));
     }
 
     public function storePost(Request $request) {
@@ -45,7 +49,14 @@ class HomeController extends Controller
         $data['autore'] = Auth::user() -> name;
         
 
-        $post = Post::create($data);
+        $post = Post::make($data);
+        $category = Category::findOrFail($request -> get('category'));
+
+        $post -> category() -> associate($category);
+
+        $post -> save();
+
+
         return redirect() -> route('home');
     }
 }

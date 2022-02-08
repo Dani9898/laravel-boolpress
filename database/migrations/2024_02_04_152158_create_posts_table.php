@@ -15,19 +15,20 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table -> string('titolo');
-            $table -> string('autore');
-            $table -> string('sottotitolo');
-            $table -> text('contenuto');
-            $table -> date('data');
+            $table->string('titolo');
+            $table->string('autore');
+            $table->string('sottotitolo');
+            $table->text('contenuto');
+            $table->date('data');
+            
             $table->timestamps();
+            
+            $table -> unsignedBigInteger('category_id');
+            $table  -> foreign('category_id')
+                    -> references('id')
+                    -> on('categories');
 
-            $table -> unsignedBigInteger('category_id') -> nullable();
-            $table -> foreign('category_id') -> references('id') -> on('categories');
-           
         });
-
-        
     }
 
     /**

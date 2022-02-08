@@ -20,6 +20,13 @@
         <label for="data">data</label>
         <input type="date" name="data">
 
+        <label for="category">category</label>
+        <select name="category">
+            @foreach ($categories as $category)
+                <option value="{{ $category -> id }}">{{ $category -> name }}</option>
+            @endforeach
+        </select>
+
         <input type="submit" value="CREATE">
 
     </form>
