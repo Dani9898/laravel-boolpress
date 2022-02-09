@@ -38,6 +38,8 @@
             </td>
             <td>
                 <a class="btn btn-primary" href="{{ route('post.edit', $post -> id) }}">EDIT</a>
+            </td> <td>
+                <a class="btn btn-danger" href="{{ route('post.delete', $post -> id) }}">DELETE</a>
             </td>
         </tr>
     

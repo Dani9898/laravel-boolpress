@@ -27,6 +27,7 @@ Route::post('/posts/store', 'Homecontroller@storePost') -> name('post.store');
 
 Route::get('/posts/edit/{id}', 'HomeController@editPost') -> name('post.edit');
 Route::post('/posts/update/{id}', 'HomeController@updatePost') -> name('post.update');
+Route::get('/posts/delete/{id}', 'HomeController@deletePost') -> name('post.delete');
 
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
