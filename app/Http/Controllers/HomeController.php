@@ -64,4 +64,53 @@ class HomeController extends Controller
 
         return redirect() -> route('home');
     }
+
+    public function editPost($id) {
+
+        $categories = Category::all();
+        $tags = Tag::all(); 
+
+        $post = Post::findOrFail($id);
+
+        return view('pages.edit-post', compact('categories', 'tags', 'post'));
+    }
+
+    public function updatePost(Request $request, $id) {
+
+        $data = $request -> validate([
+            'titolo' => 'required|string|max:255',
+            'sottotitolo' => 'required|string|max:255',
+            'contenuto' => 'required|string',
+            'data' => 'required|date'
+        ]);
+
+        $data['autore'] = Auth::user() -> name;
+
+        $post = Post::findOrFail($id);
+        $post -> update($data);
+
+        $category = Category::findOrFail($request -> get('category'));
+        $post -> category() -> associate($category);
+        $post -> save();
+
+        $tags=[];
+        // VERS 1
+        if ($request -> has('tags'))
+            $tags= Tag::findOrFail($request -> get('tags'));
+
+        // VERS 2
+        // try {
+        //     $tags = Tag::findOrFail($request -> get('tags'));
+            
+        // } catch (\Exception $e) {}
+
+        $post -> tags() -> sync($tags);  
+        $post -> save();
+        
+        return redirect() -> route('home');
+
+
+
+       
+    }
 }

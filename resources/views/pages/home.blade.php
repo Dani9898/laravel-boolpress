@@ -10,6 +10,41 @@
 
     <a class="btn btn-primary" href="{{ route('post.create') }}">CREATE</a>
 
+    <table border=1>
+
+        <tr>
+            <th>Titolo</th>
+            <th>Autore</th>
+            <th>Sottotitolo</th>
+            <th>Contenuto</th>
+            <th>Data</th>
+            <th>Categories</th>
+            <th>Tags</th>
+        </tr>
+    
+        @foreach ($posts as $post)
+    
+        <tr>
+            <td>{{ $post -> titolo }}</td> 
+            <td>{{ $post -> autore }}</td> 
+            <td>{{ $post -> sottotitolo }}</td> 
+            <td>{{ $post -> contenuto }}</td> 
+            <td>{{ $post -> data }}</td> 
+            <td>{{ $post -> category -> name}}</td> 
+            <td>
+                @foreach ($post -> tags as $tag)
+                    {{$tag -> name}}
+                @endforeach
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{{ route('post.edit', $post -> id) }}">EDIT</a>
+            </td>
+        </tr>
+    
+        @endforeach
+        
+    </table>
+
 @endauth
 
 @guest
@@ -50,9 +85,12 @@
     <input type="submit" value="LOGIN">
 
 </form>
+
 @endguest
 
-<ul>
+
+
+{{-- <ul>
      
     @foreach ($posts as $post)
 
@@ -70,6 +108,6 @@
         
     @endforeach 
  
-</ul>
+</ul> --}}
 
 @endsection

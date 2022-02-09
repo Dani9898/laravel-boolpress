@@ -16,7 +16,7 @@
         <input type="text" name="sottotitolo">
 
         <label for="contenuto">contenuto</label>
-        <input type="textarea" name="contenuto">
+        <textarea name="contenuto" cols="30" rows="10"></textarea>
         <label for="data">data</label>
         <input type="date" name="data">
 
@@ -33,6 +33,7 @@
             <input type="checkbox" name="tags[]" value="{{ $tag -> id }}"> {{ $tag -> name }}
         @endforeach
 
+        <br>
         <input type="submit" value="CREATE">
 
     </form>
